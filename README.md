@@ -16,22 +16,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 {% endcomment %}
 -->
-# Flink SQL Streaming MQTT Data Source
+# Flink Streaming MQTT Data Source And Sink
 
-A library for writing and reading data from MQTT Servers using Flink SQL Streaming (or Structured streaming).
+A library for writing and reading data from MQTT Servers using Flink Streaming.
 
-This library comes from https://github.com/apache/bahir/tree/master/sql-streaming-mqtt  .
+This library comes from Spark SQL Streaming MQTT Data Source (https://github.com/apache/bahir/tree/master/sql-streaming-mqtt). 
 
 ## Linking
 
 Using SBT:
 
-    libraryDependencies += "com.kevin.bahir" %% "kevin-flink-connector-mqtt3" % "{{site.FLINK_VERSION}}"
+    libraryDependencies += "io.github.kevin4936" %% "kevin-flink-connector-mqtt3" % "{{site.FLINK_VERSION}}"
 
 Using Maven:
 
     <dependency>
-        <groupId>com.kevin.bahir</groupId>
+        <groupId>io.github.kevin4936</groupId>
         <artifactId>kevin-flink-connector-mqtt3_{{site.SCALA_BINARY_VERSION}}</artifactId>
         <version>{{site.FLINK_VERSION}}</version>
     </dependency>
