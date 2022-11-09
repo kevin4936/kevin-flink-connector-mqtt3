@@ -52,8 +52,22 @@
   </properties>
   <packaging>jar</packaging>
   <name>kevin-flink-connector-mqtt3</name>
-    <version>1.14.4</version>
+    <version>1.14.4-SNAPSHOT</version>
   <url>https://github.com/kevin4936/</url>
+
+    <distributionManagement>
+        <repository>
+            <id>oss</id>
+            <name>User Project Release</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>oss</id>
+            <name>User Project SNAPSHOTS</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
