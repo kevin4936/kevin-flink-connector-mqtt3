@@ -16,9 +16,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 {% endcomment %}
 -->
-# Flink Streaming MQTT Data Source And Sink
+# Flink Streaming MQTT Source And MQTT Sink
 
-A library for writing and reading data from MQTT Servers using Flink Streaming.
+This is a Flink Streaming MQTT Source And MQTT Sink library.
+
+The library for writing and reading data from MQTT Servers using Flink Streaming.
 
 This library comes from Spark SQL Streaming MQTT Data Source (https://github.com/apache/bahir/tree/master/sql-streaming-mqtt). 
 
