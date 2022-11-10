@@ -22,7 +22,7 @@ This is a Flink Streaming MQTT Source And MQTT Sink library.
 
 The library for writing and reading data from MQTT Servers using Flink Streaming.
 
-This library comes from Spark SQL Streaming MQTT Data Source (https://github.com/apache/bahir/tree/master/sql-streaming-mqtt). 
+This library comes from Spark SQL Streaming MQTT Data Source changed (https://github.com/apache/bahir/tree/master/sql-streaming-mqtt). 
 
 ## Linking
 
@@ -47,7 +47,7 @@ mvn clean install -DskipTests  -Denforcer.skip=true
 
 Unlike using `--jars`, using `--packages` ensures that this library and its dependencies will be added to the classpath.
 
-This library is cross-published for Scala 2.12 and Scala 2.13, so users should replace the proper Scala version in the commands listed above.
+This library is cross-published for Scala 2.12, so users should replace the proper Scala version in the commands listed above.
 
 ## Java Examples
 
