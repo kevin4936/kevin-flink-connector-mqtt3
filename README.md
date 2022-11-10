@@ -28,6 +28,10 @@ Using SBT:
 
     libraryDependencies += "io.github.kevin4936" %% "kevin-flink-connector-mqtt3" % "{{site.FLINK_VERSION}}"
 
+or
+
+    libraryDependencies += "io.github.kevin4936" % "kevin-flink-connector-mqtt3_2.12" % "1.14.4.1"
+
 Using Maven:
 
     <dependency>
