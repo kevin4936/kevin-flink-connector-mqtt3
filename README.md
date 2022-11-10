@@ -43,9 +43,13 @@ Unlike using `--jars`, using `--packages` ensures that this library and its depe
 
 This library is cross-published for Scala 2.12 and Scala 2.13, so users should replace the proper Scala version in the commands listed above.
 
-## Examples
+## Java Examples
 
-Please see `src/test/java/com/kevin/flink/streaming/connectors/mqtt/MQTTStreamSourceAndSinkTest.java` for full example.
+Please see `https://github.com/kevin4936/kevin-flink-connector-mqtt3/blob/main/src/test/java/com/kevin/flink/streaming/connectors/mqtt/MQTTStreamSourceAndSinkTest.java` for full example.
+
+## Scala Examples
+
+Please see `https://github.com/kevin4936/flink-mqtt3` for full example.
 
 ## Configuration options
 
