@@ -19,14 +19,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.kevin4936</groupId>
-  <artifactId>kevin-flink-connector-mqtt3</artifactId>
+  <artifactId>kevin-flink-connector-mqtt3_2.12</artifactId>
 
   <properties>
     <sbt.project.name>kevin-flink-connector-mqtt3</sbt.project.name>
     <project.build.outputTimestamp>1655387093</project.build.outputTimestamp>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
@@ -51,21 +51,58 @@
         <CodeCacheSize>512m</CodeCacheSize>
   </properties>
   <packaging>jar</packaging>
-  <name>kevin-flink-connector-mqtt3</name>
-    <version>1.14.4-SNAPSHOT</version>
+  <name>kevin-flink-connector-mqtt3_2.12</name>
+    <version>1.14.4.1</version>
   <url>https://github.com/kevin4936/</url>
+    <description>Flink Streaming MQTT Source And MQTT Sink. A library for writing and reading data from MQTT Servers using Flink Streaming.</description>
 
+    <!-- 开源签名证书 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- 仓库信息 -->
+    <scm>
+        <connection>scm:git:git@github.com:kevin4936/kevin-flink-connector-mqtt3.git</connection>
+        <developerConnection>scm:git:git@github.com:kevin4936/kevin-flink-connector-mqtt3.git
+        </developerConnection>
+        <url>http://github.com/kevin4936/kevin-flink-connector-mqtt3/tree/main</url>
+    </scm>
+
+
+    <!-- 开发人员信息 -->
+    <developers>
+        <developer>
+            <name>kevin4936</name>
+            <email>kevin4936@163.com</email>
+            <organization>kevin4936</organization>
+            <organizationUrl>https://github.com/kevin4936</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
+    <!-- 发布管理信息 -->
     <distributionManagement>
         <repository>
+            <!-- 这里的id必须要和全局配置中的release id 一致 -->
             <id>oss</id>
-            <name>User Project Release</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <name>Nexus Release Repository</name>
+            <!-- 这里就是在创建issue成功后，对方回复的release发布地址-->
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
-
         <snapshotRepository>
+            <!-- 这里的id必须要和全局配置中的snapshot id 一致 -->
             <id>oss</id>
-            <name>User Project SNAPSHOTS</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <name>Nexus Snapshot Repository</name>
+            <!-- 这里就是在创建issue成功后，对方回复的snapshot发布地址-->
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -313,5 +350,75 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.sonatype.plugins</groupId>-->
+<!--                <artifactId>nexus-staging-maven-plugin</artifactId>-->
+<!--                <version>1.6.7</version>-->
+<!--                <extensions>true</extensions>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 这里的id必须要和全局配置中的release id 一致 &ndash;&gt;-->
+<!--                    <serverId>oss</serverId>-->
+<!--                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>-->
+<!--                    &lt;!&ndash; 如果希望发布后自动执行close和release操作，此处可以调整为true &ndash;&gt;-->
+<!--                    <autoReleaseAfterClose>false</autoReleaseAfterClose>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+            <!-- 生成java source.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 生成javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <source>${java.version}</source>
+                    <additionalJOption>-Xdoclint:none</additionalJOption>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
+
+            <!-- 生成asc 校验文件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <!-- 必须和配置中的gpg校验id一致 -->
+                        <id>gpg</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

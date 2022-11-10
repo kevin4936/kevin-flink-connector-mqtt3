@@ -17,13 +17,13 @@
 
 package com.kevin.flink.streaming.connectors.mqtt;
 
+import com.kevin.flink.streaming.connectors.mqtt.internal.MQTTExceptionListener;
+import com.kevin.flink.streaming.connectors.mqtt.internal.RunningChecker;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.tuple.Tuple9;
 import org.apache.flink.api.java.typeutils.ResultTypeQueryable;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.source.MessageAcknowledgingSourceBase;
-import com.kevin.flink.streaming.connectors.mqtt.internal.MQTTExceptionListener;
-import com.kevin.flink.streaming.connectors.mqtt.internal.RunningChecker;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
@@ -65,7 +65,7 @@ import java.util.concurrent.BlockingQueue;
  * 
  */
 
-class MQTTStreamSource extends MessageAcknowledgingSourceBase<MQTTMessage, Long>
+public class MQTTStreamSource extends MessageAcknowledgingSourceBase<MQTTMessage, Long>
     implements ResultTypeQueryable<MQTTMessage> {
 
   private static final long serialVersionUID = 1L;

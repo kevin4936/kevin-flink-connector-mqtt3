@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
  * 
  */
 
-class MQTTStreamConstants {
+public class MQTTStreamConstants {
 
     public static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 

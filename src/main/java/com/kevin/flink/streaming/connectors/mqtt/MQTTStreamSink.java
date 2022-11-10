@@ -17,11 +17,11 @@
 
 package com.kevin.flink.streaming.connectors.mqtt;
 
+import com.kevin.flink.streaming.connectors.mqtt.internal.Retry;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple9;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
-import com.kevin.flink.streaming.connectors.mqtt.internal.Retry;
 import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
 import org.eclipse.paho.client.mqttv3.MqttClientPersistence;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -51,7 +51,7 @@ import java.util.Optional;
  * 
  */
 
-class MQTTStreamSink extends RichSinkFunction<MQTTMessage> {
+public class MQTTStreamSink extends RichSinkFunction<MQTTMessage> {
 
     private static final long serialVersionUID = 1L;
 

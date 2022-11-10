@@ -28,7 +28,7 @@ import java.util.Calendar;
  * 
  */
 
-class MQTTMessage implements Serializable {
+public class MQTTMessage implements Serializable {
 
   private String topic;
   private int messageId;
