@@ -32,14 +32,14 @@ Using SBT:
 
 or
 
-    libraryDependencies += "io.github.kevin4936" % "kevin-flink-connector-mqtt3_2.12" % "1.14.4.1"
+    libraryDependencies += "io.github.kevin4936" % "kevin-flink-connector-mqtt3_2.12" % "1.14.6"
 
 Using Maven:
 
     <dependency>
         <groupId>io.github.kevin4936</groupId>
-        <artifactId>kevin-flink-connector-mqtt3_{{site.SCALA_BINARY_VERSION}}</artifactId>
-        <version>{{site.FLINK_VERSION}}</version>
+        <artifactId>kevin-flink-connector-mqtt3_2.12</artifactId>
+        <version>1.14.6</version>
     </dependency>
 
 mvn clean install -DskipTests  -Denforcer.skip=true
@@ -91,11 +91,11 @@ This connector uses [Eclipse Paho Java Client](https://eclipse.org/paho/clients/
 
 Custom environment variables allowing to manage MQTT connectivity performed by sink connector:
 
- * `spark.mqtt.client.connect.attempts` Number of attempts sink will try to connect to MQTT broker before failing.
- * `spark.mqtt.client.connect.backoff` Delay in milliseconds to wait before retrying connection to the server.
- * `spark.mqtt.connection.cache.timeout` Sink connector caches MQTT connections. Idle connections will be closed after timeout milliseconds.
- * `spark.mqtt.client.publish.attempts` Number of attempts to publish the message before failing the task.
- * `spark.mqtt.client.publish.backoff` Delay in milliseconds to wait before retrying send operation.
+ * `flink.mqtt.client.connect.attempts` Number of attempts sink will try to connect to MQTT broker before failing.
+ * `flink.mqtt.client.connect.backoff` Delay in milliseconds to wait before retrying connection to the server.
+ * `flink.mqtt.connection.cache.timeout` Sink connector caches MQTT connections. Idle connections will be closed after timeout milliseconds.
+ * `flink.mqtt.client.publish.attempts` Number of attempts to publish the message before failing the task.
+ * `flink.mqtt.client.publish.backoff` Delay in milliseconds to wait before retrying send operation.
 
 ## Best Practices.
 
@@ -109,4 +109,4 @@ The design of Mqtt and the purpose it serves goes well together, but often in an
 
 Generally, one would create a lot of streaming pipelines to solve this problem. This would either require a very sophisticated scheduling setup or will waste a lot of resources, as it is not certain which stream is using more amount of data.
 
-The general solution is both less optimum and is more cumbersome to operate, with multiple moving parts incurs a high maintenance overall. As an alternative, in this situation, one can setup a single topic kafka-spark stream, where message from each of the varied stream contains a unique tag separating one from other streams. This way at the processing end, one can distinguish the message from one another and apply the right kind of decoding and processing. Similarly while storing, each message can be distinguished from others by a tag that distinguishes.
+The general solution is both less optimum and is more cumbersome to operate, with multiple moving parts incurs a high maintenance overall. As an alternative, in this situation, one can setup a single topic kafka-flink stream, where message from each of the varied stream contains a unique tag separating one from other streams. This way at the processing end, one can distinguish the message from one another and apply the right kind of decoding and processing. Similarly while storing, each message can be distinguished from others by a tag that distinguishes.
